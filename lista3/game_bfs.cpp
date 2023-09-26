@@ -29,13 +29,13 @@ signed main(){
     map<string, int> mp;
 
     do{
-        mp[temp] = cnt++;
+        mp[temp] = cnt++;   // associando cada estado do jogo a um número (~1e6 numeros)
     }
     while(next_permutation(temp.begin(), temp.end()));
 
     int N = cnt;
 
-    vector<int> par(N,0), lvl(N,0);
+    vector<int> par(N,0), lvl(N,0);     // vamso utilizar esses vetores para guardar o caminho mínimo e recuperá-lo para obtermos a solução de uma configuração
     vector<string> repr(N);
 
     for(auto [x, ind] : mp){
@@ -48,12 +48,12 @@ signed main(){
     queue<string> qw; qw.push(ini); 
     lvl[mp[ini]] = 1; par[mp[ini]] = mp[ini];
 
-    pair<int,string> farthest = {0, "012345678"};
+    pair<int,string> farthest = {0, "012345678"};       //utilizado para obter uma das configurações mais longes
 
     while(!qw.empty()){
         string cc = qw.front(); qw.pop();
         int x = -1, y = -1;
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < 9; i++) {        //logica dos movimentos para gerar vértices vizinhos
             if(cc[i] == '0') {
                 x = i/3; y = i%3; 
             }
@@ -105,15 +105,12 @@ signed main(){
 
     ans.push_back(repr[id]);
 
-    // reverse(ans.rbegin(), ans.rend());
-
     for(string s: ans){
-        // cout << '\n';
         for(int i = 0; i < 10; i+=3) cout << s.substr(i, 3) << '\n';
         cout << '\n';
     }
 
-    cout << farthest.second << '\n';
+    cout << farthest.second << '\n';    
 
     return 0;
 }

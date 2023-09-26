@@ -29,7 +29,7 @@ signed main(){
     map<string, int> mp;
 
     do{
-        mp[temp] = cnt++;
+        mp[temp] = cnt++;       // associa um numero a cada string (~1e6 numeros)
     }
     while(next_permutation(temp.begin(), temp.end()));
 
@@ -49,7 +49,7 @@ signed main(){
 
     function<int(string)> heur;
 
-    heur = [&](string a){
+    heur = [&](string a){       // função da heurística: para cada posição igual a ini somamos um ao valor daquele vertice
 
         int val = 0;
 
@@ -65,7 +65,7 @@ signed main(){
     while(!pq.empty()){
         string cc = pq.top().second; pq.pop();
         int x = -1, y = -1;
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < 9; i++) {    //logica dos movimentos para gerar vértices vizinhos
             if(cc[i] == '0') {
                 x = i/3; y = i%3; 
             }
@@ -94,8 +94,6 @@ signed main(){
 
     }
 
-    // cout << mp["312475068"] << '\n';
-
 
     if(lvl[mp[req]] == 0){
         cout << "Não é possível chegar nessa configuração. \n";
@@ -109,7 +107,7 @@ signed main(){
 
     int id = mp[ini];
 
-    while(par[id] != id){
+    while(par[id] != id){       // logica de pegar o caminho usando o vetor par
         ans.push_back(repr[id]);
         id = par[id];
     }
@@ -119,7 +117,6 @@ signed main(){
     reverse(ans.rbegin(), ans.rend());
 
     for(string s: ans){
-        // cout << '\n';
         for(int i = 0; i < 10; i+=3) cout << s.substr(i, 3) << '\n';
         cout << '\n';
     }

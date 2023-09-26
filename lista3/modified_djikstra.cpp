@@ -38,7 +38,7 @@ signed main(){
     vector<int> dist(n, 1e9+50), par(n,0);
     vector<bool> vis(n,0);
 
-    pq.push({0,0});
+    pq.push({0,0});     //vou usar o vértice 0 como inicial
 
     while(!pq.empty()){
         int cc = pq.top().second; pq.pop();
@@ -58,11 +58,11 @@ signed main(){
     int querry; cin >> querry;
 
     while(querry--){
-        int req; cin >> req; req--;
+        int req; cin >> req; req--;     //aqui o usuario insere um vertice para obter o caminho minimo entre 0 e req
 
         vector<int> ans(0);
 
-        while(req != par[req]){
+        while(req != par[req]){         
             ans.push_back(req);
             req = par[req];
         }
